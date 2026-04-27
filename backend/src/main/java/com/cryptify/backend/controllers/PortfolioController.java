@@ -35,13 +35,13 @@ public class PortfolioController {
         }
         Portfolio portfolio = portfolioRepository.findByUserId(userId).orElse(null);
         return ResponseEntity.ok(Map.of(
-            "user", user,
-            "portfolio", portfolio != null ? portfolio : Map.of("assets", List.of())
-        ));
+                "user", user,
+                "portfolio", portfolio != null ? portfolio : Map.of("assets", List.of())));
     }
-    
+
     @GetMapping("/{userId}/transactions")
     public ResponseEntity<?> getTransactions(@PathVariable Long userId) {
         return ResponseEntity.ok(transactionRepository.findByUserIdOrderByTimestampDesc(userId));
     }
+
 }
